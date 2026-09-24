@@ -11,15 +11,25 @@ import Profile from './pages/Profile';
 import AdminDashboard from './pages/AdminDashboard';
 import NotFound from './pages/NotFound';
 import { Toaster } from 'react-hot-toast';
+import { IS_DEMO_MODE } from './services/api';
+
 
 export default function App() {
   return (
     <ThemeProvider>
       <AuthProvider>
         <Router>
-          <div className="flex flex-col min-h-screen bg-[var(--bg-primary)] text-[var(--text-primary)] transition-colors duration-300">
+        <div className="flex flex-col min-h-screen bg-[var(--bg-primary)] text-[var(--text-primary)] transition-colors duration-300">
+            {/* Demo mode notice banner */}
+            {IS_DEMO_MODE && (
+              <div className="w-full text-center py-1.5 px-4 text-[11px] font-semibold tracking-wide"
+                style={{ background: 'linear-gradient(90deg, #7c3aed, #2563eb)', color: '#e0e7ff', letterSpacing: '0.04em' }}>
+                🚀 Demo Mode — All data is simulated. Deploy a backend to enable real calls.
+              </div>
+            )}
             {/* Global navigation bar */}
             <Navbar />
+
             
             {/* Main view container */}
             <main className="flex-grow">
