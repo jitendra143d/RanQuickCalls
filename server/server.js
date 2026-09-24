@@ -22,8 +22,26 @@ const app = express();
 const server = http.createServer(app);
 
 // Configure CORS Options
+const allowedOrigins = env.corsOrigin
+  .split(',')
+  .map((o) => o.trim())
+  .filter(Boolean);
+
 const corsOptions = {
-  origin: env.corsOrigin.split(','),
+  origin: (origin, callback) => {
+    // Allow requests with no origin (e.g., mobile apps, curl, server-to-server)
+    if (!origin) return callback(null, true);
+
+    if (
+      allowedOrigins.includes(origin) ||
+      // Always permit localhost in non-production for local dev
+      (env.nodeEnv !== 'production' && /^http:\/\/localhost(:\d+)?$/.test(origin))
+    ) {
+      callback(null, true);
+    } else {
+      callback(new Error(`CORS policy: origin '${origin}' is not allowed`));
+    }
+  },
   credentials: true,
   optionsSuccessStatus: 200
 };
