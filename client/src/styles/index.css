@@ -1,0 +1,132 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Space Grotesk', sans-serif;
+  letter-spacing: -0.02em;
+}
+body {
+  font-family: 'Outfit', sans-serif;
+}
+
+:root, .theme-dark {
+  --bg-primary: #0b0f19;
+  --bg-secondary: rgba(20, 26, 42, 0.65);
+  --text-primary: #f8fafc;
+  --text-secondary: #94a3b8;
+  --border-color: rgba(255, 255, 255, 0.08);
+  --accent-color: #3b82f6;
+  --accent-gradient: linear-gradient(135deg, #3b82f6 0%, #7c3aed 50%, #10b981 100%);
+}
+
+.theme-light {
+  --bg-primary: #f8fafc;
+  --bg-secondary: rgba(255, 255, 255, 0.95);
+  --text-primary: #0f172a;
+  --text-secondary: #475569;
+  --border-color: #e2e8f0;
+  --accent-color: #ff9900;
+  --accent-gradient: linear-gradient(135deg, #0088cc 0%, #ff9900 100%);
+}
+
+.theme-cyberpunk {
+  --bg-primary: #05010e;
+  --bg-secondary: rgba(25, 0, 50, 0.65);
+  --text-primary: #00ffcc;
+  --text-secondary: #ff007f;
+  --border-color: rgba(255, 0, 127, 0.3);
+  --accent-color: #ff007f;
+  --accent-gradient: linear-gradient(135deg, #ff007f 0%, #9d00ff 50%, #00ffcc 100%);
+}
+
+.theme-sunset {
+  --bg-primary: #170a0a;
+  --bg-secondary: rgba(36, 14, 14, 0.65);
+  --text-primary: #ffe4e6;
+  --text-secondary: #fda4af;
+  --border-color: rgba(244, 63, 94, 0.15);
+  --accent-color: #f97316;
+  --accent-gradient: linear-gradient(135deg, #f97316 0%, #e11d48 100%);
+}
+
+@layer base {
+  body {
+    background-color: var(--bg-primary);
+    color: var(--text-primary);
+    @apply transition-colors duration-300;
+  }
+}
+
+/* Glassmorphism Theme Overrides */
+.glass {
+  background: var(--bg-secondary) !important;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid var(--border-color) !important;
+}
+
+.glass-premium {
+  background: var(--bg-secondary) !important;
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid var(--border-color) !important;
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.2);
+}
+
+.glass-light {
+  background: rgba(255, 255, 255, 0.03);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid var(--border-color);
+}
+/* Audio visualizer voice bars animation */
+.voice-bar {
+  display: inline-block;
+  width: 4px;
+  height: 10px;
+  border-radius: 2px;
+  background-color: #7C3AED;
+  margin: 0 2px;
+}
+
+@keyframes voice-bounce {
+  0%, 100% { height: 10px; transform: scaleY(1); }
+  50% { height: 50px; transform: scaleY(1.2); }
+}
+
+/* Custom WebRTC Waveforms */
+.waveform-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 60px;
+}
+
+.waveform-bar {
+  width: 4px;
+  height: 12px;
+  background: linear-gradient(180deg, #7C3AED 0%, #2563EB 100%);
+  margin: 0 3px;
+  border-radius: 9999px;
+  transition: height 0.15s ease-in-out;
+}
+
+/* Custom Scrollbars */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(15, 23, 42, 0.5);
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(124, 58, 237, 0.3);
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(124, 58, 237, 0.6);
+}
